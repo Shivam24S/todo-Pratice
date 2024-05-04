@@ -1,10 +1,14 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-const AddTodo = () => {
+const AddTodo = ({ addData, editingVal }) => {
   const [input, setInput] = useState({
     task: "",
     description: "",
   });
+
+  useEffect(() => {
+    editingVal ? setInput(editingVal) : null;
+  }, [editingVal]);
 
   const handleChange = (inputVal, e) => {
     setInput((prevInput) => {
@@ -16,6 +20,11 @@ const AddTodo = () => {
   };
 
   console.log("Input Data", input);
+
+  const handleAdd = () => {
+    addData(input);
+    setInput({ task: "", description: "" });
+  };
 
   return (
     <>
@@ -39,7 +48,7 @@ const AddTodo = () => {
         }}
       />
       <br />
-      <button>Add</button>
+      <button onClick={handleAdd}>{editingVal ? "update" : "Add"}</button>
     </>
   );
 };
