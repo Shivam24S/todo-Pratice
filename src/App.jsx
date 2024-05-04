@@ -1,7 +1,9 @@
+import AddTodo from "./component/AddTodo";
+
 function App() {
   return (
     <>
-      <h1>hello</h1>
+      <AddTodo />
     </>
   );
 }
